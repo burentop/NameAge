@@ -14,9 +14,10 @@ int main()
     vector<int> ages;
     string tempname = "A";
     int tempage = 1;
-    string search_name;
-    int found_age = 0;
+    int search_age;
+    string found_name = " ";
     bool search_found = false;
+    int found_names = 0;
     
     while (tempname != "NoName" && tempage != 0) {
         cout << "Please enter a name and an age (separated by a space).\n";
@@ -38,28 +39,28 @@ int main()
     
     while (true) {
         cout << "You can now search the database.\n";
-        cout << "Enter a name to search for (enter 'quit' to quit): ";
-        cin >> search_name;
+        cout << "Enter an age, and it will list all names with that age (enter '0' to quit): ";
+        cin >> search_age;
         cout << "\n";
-        if (search_name == "quit") {
+        if (search_age == 0) {
             break;
         }
 
         while (!search_found) {
             for (int i = 0; i < names.size(); ++i) {
-                if (search_name == names[i]) {
-                    found_age = ages[i];
-                    search_found = true;
-                    break;
+                if (search_age == ages[i]) {
+                    cout << names[i] << "\n";
+                    ++found_names;
                 }
             }
+            if (found_names == 0) {
+                cout << "Score not found.\n";
+            }
+            search_found = true;
+            found_names = 0;
+            
         }
-        if (!search_found) {
-            cout << "Name not found.";
-        } else {
-            cout << search_name << " " << found_age << "\n";
-            search_found = false;
-        }
+       
     }
     
     
