@@ -17,7 +17,7 @@ int main()
     
     while (tempname != "NoName" && tempage != 0) {
         cout << "Please enter a name and an age (separated by a space).\n";
-        cout << "(Enter 'NoName 0' to quit.\n";
+        cout << "Don't repeat names. (Enter 'NoName 0' to quit.)\n";
         cin >> tempname >> tempage;
         for (string name : names) {
             if (tempname == name) {
@@ -26,8 +26,10 @@ int main()
                 break;
             }
         }
-        names.push_back(tempname);
-        ages.push_back(tempage);
+        if (tempname != "NoName") {
+            names.push_back(tempname);
+            ages.push_back(tempage);
+        }
     }
     
     cout << "You entered: \n";
